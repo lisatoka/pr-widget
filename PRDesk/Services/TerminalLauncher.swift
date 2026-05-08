@@ -13,36 +13,40 @@ class TerminalLauncher {
     /// Launches Terminal.app and executes Claude Code with the provided prompt
     /// - Parameter prompt: The prompt to pass to Claude Code
     func launchClaude(with prompt: String) {
-        // Escape the prompt for shell execution
-        let escapedPrompt = escapeForShell(prompt)
+        // Create a temporary shell script that will run claude with the prompt
+        let tempDir = FileManager.default.temporaryDirectory
+        let scriptPath = tempDir.appendingPathComponent("launch_claude_\(UUID().uuidString).sh")
 
-        // Build the command to execute in Terminal
-        // Using 'claude' command from Claude Code CLI
-        let command = "claude \(escapedPrompt)"
+        // Escape the prompt for shell script
+        let escapedPrompt = prompt.replacingOccurrences(of: "'", with: "'\\''")
 
-        // AppleScript to open Terminal and execute the command
-        let appleScript = """
-        tell application "Terminal"
-            activate
-            do script "\(escapeForAppleScript(command))"
-        end tell
+        // Create shell script content
+        let scriptContent = """
+        #!/bin/bash
+        claude '\(escapedPrompt)'
         """
 
-        // Execute the AppleScript
-        var error: NSDictionary?
-        if let scriptObject = NSAppleScript(source: appleScript) {
-            let output = scriptObject.executeAndReturnError(&error)
+        do {
+            // Write the script to the temp file
+            try scriptContent.write(to: scriptPath, atomically: true, encoding: .utf8)
 
-            if let error = error {
-                print("[TerminalLauncher] Error executing AppleScript: \(error)")
-                showErrorAlert(message: "Failed to launch Terminal with Claude Code. Error: \(error)")
-            } else {
-                print("[TerminalLauncher] Successfully launched Terminal with Claude Code")
-                print("[TerminalLauncher] Command: \(command)")
-            }
-        } else {
-            print("[TerminalLauncher] Failed to create AppleScript object")
-            showErrorAlert(message: "Failed to create AppleScript for Terminal launch")
+            // Make it executable
+            try FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: scriptPath.path)
+
+            // Open the script in Terminal (this will execute it)
+            NSWorkspace.shared.openFile(scriptPath.path, withApplication: "Terminal")
+
+            print("[TerminalLauncher] Created and opened script at: \(scriptPath.path)")
+
+        } catch {
+            print("[TerminalLauncher] Error creating script: \(error)")
+
+            // Fallback: copy to clipboard
+            let pasteboard = NSPasteboard.general
+            pasteboard.clearContents()
+            pasteboard.setString(prompt, forType: .string)
+
+            showErrorAlert(message: "Could not auto-launch Claude. The prompt has been copied to your clipboard.\n\nOpen Terminal and run:\nclaude '<paste here>'")
         }
     }
 

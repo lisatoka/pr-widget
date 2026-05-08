@@ -23,6 +23,9 @@ class DetailWindowController: NSWindowController {
         window.center()
         window.setFrameAutosaveName("DetailWindow")
 
+        // Set minimum window size to prevent it from being too small
+        window.minSize = NSSize(width: 800, height: 600)
+
         // Create SwiftUI content
         let detailView = DetailView(initialTab: initialTab)
         let hostingController = NSHostingController(rootView: detailView)

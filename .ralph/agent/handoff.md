@@ -1,11 +1,11 @@
 # Session Handoff
 
-_Generated: 2026-05-08 22:01:33 UTC_
+_Generated: 2026-05-08 23:28:15 UTC_
 
 ## Git Context
 
 - **Branch:** `master`
-- **HEAD:** 187eabc: chore: auto-commit before merge (loop primary)
+- **HEAD:** cb5aae1: chore: auto-commit before merge (loop primary)
 
 ## Tasks
 
@@ -36,6 +36,9 @@ _Generated: 2026-05-08 22:01:33 UTC_
 - [x] Handle polling edge cases and errors
 - [x] Fix window level to desktop background instead of floating
 - [x] Debug and fix GitHub CLI error in PR data fetching
+- [x] Add --state=open flag to filter out closed/merged PRs
+- [x] Add --sort=updated flag to sort PRs by recent activity
+- [x] Increase detail window size from 800x600 to 1000x800
 
 ### Remaining
 
