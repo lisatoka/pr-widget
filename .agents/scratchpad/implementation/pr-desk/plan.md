@@ -58,10 +58,9 @@ Expected subtasks:
 - Update widget highlight states based on new data
 - Handle edge cases (network failures, rate limits)
 
-## Step 8 - Local Repo Config
-**Demo:** App reads repo-to-path mapping and uses it for Claude integration
+## Step 8 - Bug Fixes
+**Demo:** Widgets sit on desktop background and successfully fetch PR data from GitHub
 
 Expected subtasks:
-- Define config file schema (JSON)
-- Implement config file reader
-- Use repo paths when launching Claude Code
+- Fix window level: change from floating to desktop background
+- Fix GitHub CLI error: debug and resolve gh command execution issues

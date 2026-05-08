@@ -1,0 +1,24 @@
+=== Testing PR Highlight Logic ===
+
+Test 1: Open non-draft PR
+  isDraft: false
+  state: OPEN
+  needsAction: true
+  Expected: true (bright)
+  ✅ PASS
+
+Test 2: Draft PR
+  isDraft: true
+  state: OPEN
+  needsAction: false
+  Expected: false (dimmed)
+  ✅ PASS
+
+Test 3: Closed PR
+  isDraft: false
+  state: CLOSED
+  needsAction: false
+  Expected: false (dimmed)
+  ✅ PASS
+
+=== All Tests Passed ✅ ===

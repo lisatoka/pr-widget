@@ -32,4 +32,11 @@ struct PullRequest: Codable, Identifiable, Equatable {
     var repositoryFullName: String {
         repository.nameWithOwner
     }
+
+    /// Determines if this PR needs action from the author
+    /// Simple heuristic: Open non-draft PRs need action (likely have reviewer activity)
+    /// Draft PRs are waiting for reviewers
+    var needsAction: Bool {
+        state == "OPEN" && !isDraft
+    }
 }

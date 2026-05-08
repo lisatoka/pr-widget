@@ -1,0 +1,78 @@
+PRDesk/Tests/TestDetailedPRRow.swift:99:1: error: expressions are not allowed at the top level
+ 97 | 
+ 98 | // Run all tests
+ 99 | testDetailRowViewFields()
+    | `- error: expressions are not allowed at the top level
+100 | testMyPRsDetailViewDataLoading()
+101 | testReviewRequestedDetailViewDataLoading()
+
+PRDesk/Tests/TestDetailedPRRow.swift:100:1: error: expressions are not allowed at the top level
+ 98 | // Run all tests
+ 99 | testDetailRowViewFields()
+100 | testMyPRsDetailViewDataLoading()
+    | `- error: expressions are not allowed at the top level
+101 | testReviewRequestedDetailViewDataLoading()
+102 | 
+
+PRDesk/Tests/TestDetailedPRRow.swift:101:1: error: expressions are not allowed at the top level
+ 99 | testDetailRowViewFields()
+100 | testMyPRsDetailViewDataLoading()
+101 | testReviewRequestedDetailViewDataLoading()
+    | `- error: expressions are not allowed at the top level
+102 | 
+103 | print("\n=== Test Expectations Summary ===")
+
+PRDesk/Tests/TestDetailedPRRow.swift:103:1: error: expressions are not allowed at the top level
+101 | testReviewRequestedDetailViewDataLoading()
+102 | 
+103 | print("\n=== Test Expectations Summary ===")
+    | `- error: expressions are not allowed at the top level
+104 | print("1. DetailRowView component exists with all required fields")
+105 | print("2. MyPRsDetailView uses PRDataStore.loadMyPRs()")
+
+PRDesk/Tests/TestDetailedPRRow.swift:104:1: error: expressions are not allowed at the top level
+102 | 
+103 | print("\n=== Test Expectations Summary ===")
+104 | print("1. DetailRowView component exists with all required fields")
+    | `- error: expressions are not allowed at the top level
+105 | print("2. MyPRsDetailView uses PRDataStore.loadMyPRs()")
+106 | print("3. ReviewRequestedDetailView uses PRDataStore.loadReviewRequestedPRs()")
+
+PRDesk/Tests/TestDetailedPRRow.swift:105:1: error: expressions are not allowed at the top level
+103 | print("\n=== Test Expectations Summary ===")
+104 | print("1. DetailRowView component exists with all required fields")
+105 | print("2. MyPRsDetailView uses PRDataStore.loadMyPRs()")
+    | `- error: expressions are not allowed at the top level
+106 | print("3. ReviewRequestedDetailView uses PRDataStore.loadReviewRequestedPRs()")
+107 | print("4. Both detail views render List of DetailRowView")
+
+PRDesk/Tests/TestDetailedPRRow.swift:106:1: error: expressions are not allowed at the top level
+104 | print("1. DetailRowView component exists with all required fields")
+105 | print("2. MyPRsDetailView uses PRDataStore.loadMyPRs()")
+106 | print("3. ReviewRequestedDetailView uses PRDataStore.loadReviewRequestedPRs()")
+    | `- error: expressions are not allowed at the top level
+107 | print("4. Both detail views render List of DetailRowView")
+108 | print("5. 'Open in Claude' button present for each PR")
+
+PRDesk/Tests/TestDetailedPRRow.swift:107:1: error: expressions are not allowed at the top level
+105 | print("2. MyPRsDetailView uses PRDataStore.loadMyPRs()")
+106 | print("3. ReviewRequestedDetailView uses PRDataStore.loadReviewRequestedPRs()")
+107 | print("4. Both detail views render List of DetailRowView")
+    | `- error: expressions are not allowed at the top level
+108 | print("5. 'Open in Claude' button present for each PR")
+109 | print("6. Highlight logic applied (needsAction)")
+
+PRDesk/Tests/TestDetailedPRRow.swift:108:1: error: expressions are not allowed at the top level
+106 | print("3. ReviewRequestedDetailView uses PRDataStore.loadReviewRequestedPRs()")
+107 | print("4. Both detail views render List of DetailRowView")
+108 | print("5. 'Open in Claude' button present for each PR")
+    | `- error: expressions are not allowed at the top level
+109 | print("6. Highlight logic applied (needsAction)")
+110 | 
+
+PRDesk/Tests/TestDetailedPRRow.swift:109:1: error: expressions are not allowed at the top level
+107 | print("4. Both detail views render List of DetailRowView")
+108 | print("5. 'Open in Claude' button present for each PR")
+109 | print("6. Highlight logic applied (needsAction)")
+    | `- error: expressions are not allowed at the top level
+110 | 

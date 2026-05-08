@@ -1,0 +1,8 @@
+warning: no such SDK: $(xcrun --show-sdk-path)
+<unknown>:0: warning: no such sysroot directory: '$(xcrun --show-sdk-path)'
+<unknown>:0: warning: no such sysroot directory: '$(xcrun --show-sdk-path)'
+<unknown>:0: warning: no such sysroot directory: '$(xcrun --show-sdk-path)'
+<unknown>:0: warning: no such sysroot directory: '$(xcrun --show-sdk-path)'
+<unknown>:0: warning: no such sysroot directory: '$(xcrun --show-sdk-path)'
+<unknown>:0: warning: no such sysroot directory: '$(xcrun --show-sdk-path)'
+<unknown>:0: warning: no such sysroot directory: '$(xcrun --show-sdk-path)'

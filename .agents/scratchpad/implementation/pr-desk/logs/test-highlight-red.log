@@ -1,0 +1,47 @@
+PRDesk/Tests/TestHighlightLogic.swift:36:44: error: value of type 'PullRequest' has no member 'needsAction'
+34 |     print("  isDraft: \(actionNeededPR.isDraft)")
+35 |     print("  state: \(actionNeededPR.state)")
+36 |     print("  needsAction: \(actionNeededPR.needsAction)")
+   |                                            `- error: value of type 'PullRequest' has no member 'needsAction'
+37 |     print("  Expected: true (bright)")
+38 |     assert(actionNeededPR.needsAction == true, "Open non-draft PR should need action")
+
+PRDesk/Tests/TestHighlightLogic.swift:38:27: error: value of type 'PullRequest' has no member 'needsAction'
+36 |     print("  needsAction: \(actionNeededPR.needsAction)")
+37 |     print("  Expected: true (bright)")
+38 |     assert(actionNeededPR.needsAction == true, "Open non-draft PR should need action")
+   |                           `- error: value of type 'PullRequest' has no member 'needsAction'
+39 |     print("  ✅ PASS\n")
+40 | 
+
+PRDesk/Tests/TestHighlightLogic.swift:56:39: error: value of type 'PullRequest' has no member 'needsAction'
+54 |     print("  isDraft: \(waitingPR.isDraft)")
+55 |     print("  state: \(waitingPR.state)")
+56 |     print("  needsAction: \(waitingPR.needsAction)")
+   |                                       `- error: value of type 'PullRequest' has no member 'needsAction'
+57 |     print("  Expected: false (dimmed)")
+58 |     assert(waitingPR.needsAction == false, "Draft PR should be waiting (not need action)")
+
+PRDesk/Tests/TestHighlightLogic.swift:58:22: error: value of type 'PullRequest' has no member 'needsAction'
+56 |     print("  needsAction: \(waitingPR.needsAction)")
+57 |     print("  Expected: false (dimmed)")
+58 |     assert(waitingPR.needsAction == false, "Draft PR should be waiting (not need action)")
+   |                      `- error: value of type 'PullRequest' has no member 'needsAction'
+59 |     print("  ✅ PASS\n")
+60 | 
+
+PRDesk/Tests/TestHighlightLogic.swift:76:38: error: value of type 'PullRequest' has no member 'needsAction'
+74 |     print("  isDraft: \(closedPR.isDraft)")
+75 |     print("  state: \(closedPR.state)")
+76 |     print("  needsAction: \(closedPR.needsAction)")
+   |                                      `- error: value of type 'PullRequest' has no member 'needsAction'
+77 |     print("  Expected: false (dimmed)")
+78 |     assert(closedPR.needsAction == false, "Closed PR should not need action")
+
+PRDesk/Tests/TestHighlightLogic.swift:78:21: error: value of type 'PullRequest' has no member 'needsAction'
+76 |     print("  needsAction: \(closedPR.needsAction)")
+77 |     print("  Expected: false (dimmed)")
+78 |     assert(closedPR.needsAction == false, "Closed PR should not need action")
+   |                     `- error: value of type 'PullRequest' has no member 'needsAction'
+79 |     print("  ✅ PASS\n")
+80 | 

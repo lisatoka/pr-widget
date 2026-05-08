@@ -8,7 +8,7 @@
 import AppKit
 import SwiftUI
 
-/// A floating, borderless panel that stays above other windows
+/// A borderless panel that sits on the desktop background (below normal windows)
 class FloatingPanel: NSPanel {
     init(contentRect: NSRect, backing: NSWindow.BackingStoreType, defer flag: Bool) {
         super.init(
@@ -20,7 +20,7 @@ class FloatingPanel: NSPanel {
 
         // Panel appearance
         self.isFloatingPanel = true
-        self.level = .floating
+        self.level = .normal - 1  // Desktop background level (below normal windows)
         self.backgroundColor = .clear
         self.isOpaque = false
         self.hasShadow = true

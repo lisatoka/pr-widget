@@ -1,0 +1,31 @@
+TestReviewRequestedWidget.swift:15:21: error: cannot find 'PRDataStore' in scope
+13 |     print("\n=== Test: Review-Requested Widget Data Loading ===\n")
+14 | 
+15 |     let dataStore = PRDataStore()
+   |                     `- error: cannot find 'PRDataStore' in scope
+16 | 
+17 |     // Load review-requested PRs
+
+TestReviewRequestedWidget.swift:37:26: error: cannot find 'WidgetType' in scope
+35 | 
+36 |         // Verify WidgetType enum
+37 |         let widgetType = WidgetType.reviewRequested
+   |                          `- error: cannot find 'WidgetType' in scope
+38 |         print("\n✅ WidgetType.reviewRequested.title = \"\(widgetType.title)\"")
+39 | 
+
+TestReviewRequestedWidget.swift:41:25: error: cannot find 'PRListViewModel' in scope
+39 | 
+40 |         // Verify PRListViewModel can be created for reviewRequested type
+41 |         let viewModel = PRListViewModel(widgetType: .reviewRequested)
+   |                         `- error: cannot find 'PRListViewModel' in scope
+42 |         print("✅ PRListViewModel created with widgetType: .reviewRequested")
+43 |         print("   Loaded \(viewModel.pullRequests.count) PRs into view model")
+
+TestReviewRequestedWidget.swift:41:54: error: cannot infer contextual base in reference to member 'reviewRequested'
+39 | 
+40 |         // Verify PRListViewModel can be created for reviewRequested type
+41 |         let viewModel = PRListViewModel(widgetType: .reviewRequested)
+   |                                                      `- error: cannot infer contextual base in reference to member 'reviewRequested'
+42 |         print("✅ PRListViewModel created with widgetType: .reviewRequested")
+43 |         print("   Loaded \(viewModel.pullRequests.count) PRs into view model")

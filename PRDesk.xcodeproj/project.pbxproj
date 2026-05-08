@@ -13,6 +13,11 @@
 		A10000021A000001 /* FloatingPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000022A000001 /* FloatingPanelController.swift */; };
 		A10000023A000001 /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000024A000001 /* PullRequest.swift */; };
 		A10000025A000001 /* GitHubClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000026A000001 /* GitHubClient.swift */; };
+		A10000027A000001 /* PRDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000028A000001 /* PRDataStore.swift */; };
+		A10000029A000001 /* PRRefreshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000030A000001 /* PRRefreshService.swift */; };
+		A10000031A000001 /* DetailWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000032A000001 /* DetailWindow.swift */; };
+		A10000033A000001 /* ClaudeIntegrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000034A000001 /* ClaudeIntegrationService.swift */; };
+		A10000035A000001 /* TerminalLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000036A000001 /* TerminalLauncher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +30,11 @@
 		A10000022A000001 /* FloatingPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanelController.swift; sourceTree = "<group>"; };
 		A10000024A000001 /* PullRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/PullRequest.swift; sourceTree = "<group>"; };
 		A10000026A000001 /* GitHubClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/GitHubClient.swift; sourceTree = "<group>"; };
+		A10000028A000001 /* PRDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/PRDataStore.swift; sourceTree = "<group>"; };
+		A10000030A000001 /* PRRefreshService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/PRRefreshService.swift; sourceTree = "<group>"; };
+		A10000032A000001 /* DetailWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/DetailWindow.swift; sourceTree = "<group>"; };
+		A10000034A000001 /* ClaudeIntegrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/ClaudeIntegrationService.swift; sourceTree = "<group>"; };
+		A10000036A000001 /* TerminalLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/TerminalLauncher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +62,13 @@
 				A10000000A000001 /* PRDeskApp.swift */,
 				A10000002A000001 /* ContentView.swift */,
 				A10000022A000001 /* FloatingPanelController.swift */,
+				A10000032A000001 /* DetailWindow.swift */,
 				A10000024A000001 /* PullRequest.swift */,
 				A10000026A000001 /* GitHubClient.swift */,
+				A10000028A000001 /* PRDataStore.swift */,
+				A10000030A000001 /* PRRefreshService.swift */,
+				A10000034A000001 /* ClaudeIntegrationService.swift */,
+				A10000036A000001 /* TerminalLauncher.swift */,
 				A10000004A000001 /* Assets.xcassets */,
 				A10000006A000001 /* Info.plist */,
 				A10000007A000001 /* PRDesk.entitlements */,
@@ -141,8 +156,13 @@
 				A10000003A000001 /* ContentView.swift in Sources */,
 				A10000001A000001 /* PRDeskApp.swift in Sources */,
 				A10000021A000001 /* FloatingPanelController.swift in Sources */,
+				A10000031A000001 /* DetailWindow.swift in Sources */,
 				A10000023A000001 /* PullRequest.swift in Sources */,
 				A10000025A000001 /* GitHubClient.swift in Sources */,
+				A10000027A000001 /* PRDataStore.swift in Sources */,
+				A10000029A000001 /* PRRefreshService.swift in Sources */,
+				A10000033A000001 /* ClaudeIntegrationService.swift in Sources */,
+				A10000035A000001 /* TerminalLauncher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -121,3 +121,30 @@ Example:
   "canva/frontend": "~/work/frontend",
   "canva/seo": "~/work/seo"
 }
+```
+
+## FIXES NEEDED
+
+### 1. Fix GitHub CLI Error
+The widgets currently show "Failed to refresh: The operation couldn't be completed. (PRDesk.GitHubClientError error 1.)"
+
+Investigation needed:
+- GitHub CLI (`gh`) is authenticated and working from terminal
+- The `gh search prs` command may be failing when called from within the Swift app
+- Check if there are PATH or environment issues when running `gh` from the app
+- May need to use full path to `gh` binary or set up environment properly
+- Debug by adding better error logging in `GitHubClient.swift` to see the actual error output
+
+### 2. Change Window Level to Desktop Background
+Currently the widgets float above all other windows (line 23 in `FloatingPanelController.swift`).
+
+Required behavior:
+- Widgets should sit on the desktop background like macOS time widgets
+- Should NOT float above other application windows
+- Should behave like desktop accessories that are visible but not intrusive
+
+Implementation:
+- Change `self.level = .floating` to a desktop-level window
+- Use `NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.desktopWindow)))` or similar
+- Or use `self.level = .normal - 1` to place below normal windows
+- Test that widgets remain movable and visible on the desktop background
