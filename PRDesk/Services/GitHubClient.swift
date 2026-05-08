@@ -19,7 +19,7 @@ class GitHubClient {
     func fetchMyPRs() async throws -> [PullRequest] {
         print("[GitHubClient] fetchMyPRs() ENTRY")
         let fields = "number,title,url,author,state,isDraft,repository,updatedAt"
-        let args = ["search", "prs", "--author=@me", "--json", fields]
+        let args = ["search", "prs", "--state=open", "--sort=updated", "--author=@me", "--json", fields]
 
         let (output, exitCode) = try await runGhCommand(args)
         print("[GitHubClient] fetchMyPRs() runGhCommand returned, exitCode=\(exitCode)")
@@ -56,7 +56,7 @@ class GitHubClient {
     func fetchReviewRequestedPRs() async throws -> [PullRequest] {
         print("[GitHubClient] fetchReviewRequestedPRs() ENTRY")
         let fields = "number,title,url,author,state,isDraft,repository,updatedAt"
-        let args = ["search", "prs", "--review-requested=@me", "--json", fields]
+        let args = ["search", "prs", "--state=open", "--sort=updated", "--review-requested=@me", "--json", fields]
 
         let (output, exitCode) = try await runGhCommand(args)
         print("[GitHubClient] fetchReviewRequestedPRs() runGhCommand returned, exitCode=\(exitCode)")

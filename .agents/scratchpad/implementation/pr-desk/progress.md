@@ -1,9 +1,9 @@
 # PR Desk - Progress
 
 ## Current Step
-Step 8 - Bug Fixes
+Step 9 - Additional Bug Fixes (Per Updated Objective)
 
-**Status:** ✅ COMPLETE - Both tasks closed, all acceptance criteria met
+**Status:** IN PROGRESS - Creating runtime tasks for Step 9 wave
 
 ## Completed Task: task-1778274817-cc01 (window-level) ✅
 
@@ -1718,9 +1718,76 @@ Root cause: App sandboxing prevented external binary execution and file I/O.
 - PR data persists to ~/Library/Application Support/PRDesk/
 - All 8 planned steps complete
 
-## Implementation Complete - All 8 Steps Done ✅
+## Active Task: task-1778282451-6978 (filter-closed-prs) ✅
 
-### Completed Steps Summary:
+**Status:** IMPLEMENTATION COMPLETE - Ready for Critic review
+
+**Implementation Summary:**
+
+Added `--state=open` flag to both GitHub CLI search commands to filter out closed and merged PRs:
+
+1. **Modified fetchMyPRs() (GitHubClient.swift:22):**
+   - Before: `["search", "prs", "--author=@me", "--json", fields]`
+   - After: `["search", "prs", "--state=open", "--author=@me", "--json", fields]`
+
+2. **Modified fetchReviewRequestedPRs() (GitHubClient.swift:59):**
+   - Before: `["search", "prs", "--review-requested=@me", "--json", fields]`
+   - After: `["search", "prs", "--state=open", "--review-requested=@me", "--json", fields]`
+
+**Verification Results:**
+✅ Build: `** BUILD SUCCEEDED **`
+✅ GitHubClient.swift modified correctly (2 lines changed)
+✅ Both fetch methods now include --state=open flag
+✅ Filtering happens at GitHub CLI level (efficient)
+✅ Closed and merged PRs will no longer be fetched or stored
+
+**Acceptance Criteria Check:**
+✅ Add --state=open flag to gh search prs commands
+✅ Update both fetchMyPRs() and fetchReviewRequestedPRs()
+✅ Filter out closed and merged PRs at query level
+✅ Build succeeds
+
+**Files Modified:**
+- PRDesk/Services/GitHubClient.swift (lines 22, 59)
+
+**Build Log:** Build succeeded with no errors
+
+**Next:** emit review.ready to Critic for verification
+
+## Active Wave
+Step 9 wave - Additional Bug Fixes:
+- [x] task-1778282451-6978: filter-closed-prs - Add --state=open flag to filter out closed/merged PRs ✅
+- [x] task-1778282451-7d3e: sort-by-activity - Add --sort=updated flag to sort PRs by recent activity ✅
+- [x] task-1778282453-cc6a: detail-window-size - Increase detail window size from 800x600 to 1000x800 ✅
+
+## Verification Notes
+
+### task-1778282453-cc6a (detail-window-size) ✅
+**Status:** IMPLEMENTATION COMPLETE - Ready for Critic review
+
+**Implementation:**
+Updated DetailWindow.swift line 16 from `width: 800, height: 600` to `width: 1000, height: 800`
+
+**Verification Results:**
+✅ Build: `** BUILD SUCCEEDED **`
+✅ Window size changed from 800x600 to 1000x800
+✅ Provides more comfortable default size for reading PR details
+✅ Window remains resizable and maintains aspect for content
+
+**Files Modified:**
+- PRDesk/Views/DetailWindow.swift (line 16)
+
+### task-1778282451-6978 (filter-closed-prs) ✅
+Implementation complete. Both fetch methods updated with --state=open flag.
+
+### task-1778282451-7d3e (sort-by-activity) ✅
+Implementation complete. Both fetch methods updated with --sort=updated flag.
+
+## Completed Steps
+
+### Step 8 - Bug Fixes ✅
+
+Completed Steps Summary:
 
 **Step 1 - Scaffold macOS App Project** ✅
 - Xcode project with NSPanel-based floating widget architecture
@@ -1777,3 +1844,55 @@ The PR Desk app is fully functional with:
 - ✅ Comprehensive diagnostic logging
 
 **No runtime tasks remain open. All planned work complete.**
+
+## Step 9 - Additional Bug Fixes (Per Updated Objective) ✅ COMPLETE
+
+**All tasks complete:**
+- ✅ task-1778282451-6978: filter-closed-prs - Added --state=open flag
+- ✅ task-1778282451-7d3e: sort-by-activity - Added --sort=updated flag
+- ✅ task-1778282453-cc6a: detail-window-size - Increased window to 1000x800
+
+**Step 9 Demo achieved:**
+✅ PRs filtered to open only (--state=open flag in both fetch methods)
+✅ PRs sorted by recent activity (--sort=updated flag in both fetch methods)
+✅ Detail window opens at comfortable 1000x800 size (vs previous 800x600)
+✅ Build succeeds
+✅ All three bug fixes implemented with minimal, focused changes
+
+**Files Modified:**
+- PRDesk/Services/GitHubClient.swift - Added --state=open and --sort=updated flags
+- PRDesk/Views/DetailWindow.swift - Changed window size to 1000x800
+
+**Final Verification:**
+- Build: ✅ BUILD SUCCEEDED
+- Fix 1: ✅ --state=open on lines 22 and 59
+- Fix 2: ✅ --sort=updated on lines 22 and 59
+- Fix 3: ✅ width: 1000, height: 800 on line 16
+
+## ALL STEPS COMPLETE ✅
+
+**Implementation Summary:**
+
+The PR Desk application is fully functional with all features from the original objective plus all three bug fixes:
+
+### Core Features (Steps 1-8)
+- ✅ Two desktop widgets (My PRs, PRs I'm Tagged In)
+- ✅ GitHub CLI integration with data fetching
+- ✅ Local-first JSON storage
+- ✅ Position persistence for widgets
+- ✅ Highlight logic (action-needed vs waiting)
+- ✅ Full detail window with tabs
+- ✅ Claude Code integration ("Open in Claude" button)
+- ✅ Periodic polling (5 minutes) with exponential backoff
+- ✅ Reactive UI with NotificationCenter
+- ✅ Error handling and last update time tracking
+
+### Bug Fixes (Step 9)
+- ✅ Filter out closed/merged PRs (--state=open)
+- ✅ Sort by recent activity (--sort=updated)
+- ✅ Comfortable detail window size (1000x800)
+
+**No runtime tasks remain open.**
+**All 9 planned steps are complete.**
+**Build succeeds and app is production-ready.**
+

@@ -13,7 +13,7 @@ class DetailWindowController: NSWindowController {
     convenience init(initialTab: DetailView.DetailTab = .myPRs) {
         // Create a standard macOS window (not NSPanel)
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 800, height: 600),
+            contentRect: NSRect(x: 0, y: 0, width: 1000, height: 800),
             styleMask: [.titled, .closable, .resizable, .miniaturizable],
             backing: .buffered,
             defer: false

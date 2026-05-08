@@ -125,26 +125,39 @@ Example:
 
 ## FIXES NEEDED
 
-### 1. Fix GitHub CLI Error
-The widgets currently show "Failed to refresh: The operation couldn't be completed. (PRDesk.GitHubClientError error 1.)"
-
-Investigation needed:
-- GitHub CLI (`gh`) is authenticated and working from terminal
-- The `gh search prs` command may be failing when called from within the Swift app
-- Check if there are PATH or environment issues when running `gh` from the app
-- May need to use full path to `gh` binary or set up environment properly
-- Debug by adding better error logging in `GitHubClient.swift` to see the actual error output
-
-### 2. Change Window Level to Desktop Background
-Currently the widgets float above all other windows (line 23 in `FloatingPanelController.swift`).
+### 1. Filter Out Closed and Merged PRs
+Currently all PRs are displayed (open, merged, closed, stale, etc).
 
 Required behavior:
-- Widgets should sit on the desktop background like macOS time widgets
-- Should NOT float above other application windows
-- Should behave like desktop accessories that are visible but not intrusive
+- Only show OPEN PRs
+- Filter out merged and closed PRs entirely
+- Do this at the GitHub CLI query level to avoid fetching unnecessary data
 
 Implementation:
-- Change `self.level = .floating` to a desktop-level window
-- Use `NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.desktopWindow)))` or similar
-- Or use `self.level = .normal - 1` to place below normal windows
-- Test that widgets remain movable and visible on the desktop background
+- In `GitHubClient.swift`, add `--state=open` flag to the `gh search prs` commands
+- Update both `fetchMyPRs()` and `fetchReviewRequestedPRs()` to use: `gh search prs --state=open --author=@me` and `gh search prs --state=open --review-requested=@me`
+- This ensures merged/closed PRs are never fetched or stored
+
+### 2. Sort PRs by Most Recent Activity
+PRs should be ordered by most recent activity (newest first).
+
+Required behavior:
+- PRs with fresh pushes/comments should appear before PRs without recent updates
+- Both widgets and detail window should use this ordering
+
+Implementation:
+- In `GitHubClient.swift`, add sorting to the `gh search prs` command using `--sort=updated` flag
+- Update both fetch methods to include: `gh search prs --sort=updated --author=@me` and `gh search prs --sort=updated --review-requested=@me`
+- GitHub CLI returns results in descending order by default (newest first) when using `--sort=updated`
+
+### 3. Fix Detail Window Opening Too Small
+The detail window currently opens very small initially.
+
+Required behavior:
+- Detail window should open at a reasonable default size (e.g., 900x700 or larger)
+- Should be comfortable to read PR details without resizing
+
+Implementation:
+- In `DetailWindow.swift`, update the `NSWindow` contentRect initialization
+- Change from `NSRect(x: 0, y: 0, width: 800, height: 600)` to `NSRect(x: 0, y: 0, width: 1000, height: 800)` or similar
+- Consider making it slightly larger since it contains detailed PR information

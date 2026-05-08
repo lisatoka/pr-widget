@@ -64,3 +64,11 @@ Expected subtasks:
 Expected subtasks:
 - Fix window level: change from floating to desktop background
 - Fix GitHub CLI error: debug and resolve gh command execution issues
+
+## Step 9 - Additional Bug Fixes (Per Updated Objective)
+**Demo:** PRs filtered to open only, sorted by recent activity, detail window opens at comfortable size
+
+Expected subtasks:
+- Filter out closed and merged PRs: add --state=open flag to gh search commands
+- Sort PRs by most recent activity: add --sort=updated flag to gh search commands
+- Fix detail window opening too small: increase NSRect from 800x600 to larger size (1000x800)
