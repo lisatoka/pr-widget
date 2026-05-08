@@ -1,0 +1,18 @@
+Testing fetchReviewRequestedPRs()
+
+Test 1: Fetch review-requested PRs from non-git directory
+✅ Successfully fetched 30 PRs
+   Sample PR:
+   - Number: #906810
+   - Title: [INFP-626] Make pro ratio recommend gRPC-only
+   - Author: jhannebery
+   - Repository: Canva/canva
+   - State: open
+   - Updated: 2026-05-07 06:32:15 +0000
+
+Test 2: Verify JSON field structure
+✅ All fields parsed correctly
+   - repository.name: canva
+   - repository.nameWithOwner: Canva/canva
+
+✅ ALL TESTS PASSED

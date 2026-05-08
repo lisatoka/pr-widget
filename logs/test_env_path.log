@@ -1,0 +1,7 @@
+Changing to temp directory...
+Testing /usr/bin/env gh approach...
+✅ SUCCESS: /usr/bin/env gh works (exit code 0)
+✅ Output length: 81 characters
+✅ Valid JSON array with 1 items
+
+✅ Portability fix verified: /usr/bin/env gh works from non-git directory

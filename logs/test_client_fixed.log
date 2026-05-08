@@ -1,0 +1,10 @@
+Testing GitHubClient with /usr/bin/env gh fix from /var/tmp...
+✅ SUCCESS: Fetched 30 PRs
+✅ First PR: #897126 - Lisatok pyapi 197 python rpc optimasation backup 2
+✅ Repository: Canva/canva
+✅ Updated: 2026-04-23 15:11:34 +0000
+
+✅ Portability fix verified:
+  - Uses /usr/bin/env gh (searches PATH)
+  - Works from non-git directory (/var/tmp)
+  - No hardcoded Homebrew path

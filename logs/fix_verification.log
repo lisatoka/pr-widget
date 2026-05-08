@@ -1,0 +1,62 @@
+# Fix Verification for task-1778215785-c96e
+
+## Problem
+gh pr list requires git repository context and fails with "not a git repository" when run from app bundle directory.
+
+## Solution
+Replaced `gh pr list` with `gh search prs` which works from any directory.
+
+## Verification Tests
+
+### Test 1: Old command fails outside git repo
+```
+$ cd /tmp && /opt/homebrew/bin/gh pr list --author @me --json number,title
+failed to run git: fatal: not a git repository (or any of the parent directories): .git
+❌ FAIL - Requires git repo context
+```
+
+### Test 2: New command works outside git repo
+```
+$ cd /tmp && /opt/homebrew/bin/gh search prs --author=@me --json number,title --limit 1
+[{"number":897126,"title":"Lisatok pyapi 197 python rpc optimasation backup 2"}]
+✅ PASS - Works from any directory
+```
+
+### Test 3: Build verification
+```
+$ xcodebuild -project PRDesk.xcodeproj -scheme PRDesk -configuration Debug build
+** BUILD SUCCEEDED **
+✅ PASS
+```
+
+### Test 4: Integration test
+```
+$ swift test_github_client_integration.swift
+✅ PASS: fetchMyPRs succeeded
+   Found 30 PRs
+   First PR: #897126 - Lisatok pyapi 197 python rpc optimasation backup 2
+   Repository: Canva/canva
+   State: closed, Draft: false
+   Updated: 2026-04-23 15:11:34 +0000
+✅ PASS - Correctly parses repository.nameWithOwner
+```
+
+## Changes Made
+
+### PullRequest.swift
+- Replaced `headRepository: Repository?` and `headRepositoryOwner: RepositoryOwner` with `repository: Repository`
+- Updated Repository struct to include `nameWithOwner: String`
+- Simplified `repositoryFullName` computed property
+
+### GitHubClient.swift
+- Changed command from `gh pr list` to `gh search prs`
+- Updated arguments from `["pr", "list", "--author", "@me"]` to `["search", "prs", "--author=@me"]`
+- Updated fields from `headRepository,headRepositoryOwner` to `repository`
+
+## Result
+All acceptance criteria met:
+✅ Successfully fetches and parses PR list
+✅ Returns empty array for empty responses
+✅ Handles gh CLI not available
+✅ Build succeeds
+✅ Works from any directory (no git repo required)

@@ -1,0 +1,7 @@
+[2m2026-05-08T05:08:35.530503Z[0m [32m INFO[0m [2mralph[0m[2m:[0m Loop lock held by PID 59912 (# PR Desk
+
+Build a native macOS app called PR Desk), spawning parallel loop in worktree
+Error: Failed to create worktree for parallel loop
+
+Caused by:
+    Not a git repository: /Users/lisatok/not_work/git_widget
