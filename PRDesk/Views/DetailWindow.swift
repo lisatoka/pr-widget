@@ -290,22 +290,42 @@ struct DetailRowView: View {
                     .foregroundColor(.secondary)
             }
 
-            // Open in Claude button
-            Button(action: {
-                openInClaude()
-            }) {
-                HStack {
-                    Image(systemName: "terminal")
-                    Text("Open in Claude")
+            // Action buttons
+            HStack(spacing: 12) {
+                // Open in Claude button
+                Button(action: {
+                    openInClaude()
+                }) {
+                    HStack {
+                        Image(systemName: "terminal")
+                        Text("Open in Claude")
+                    }
+                    .font(.subheadline)
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(Color.accentColor)
+                    .cornerRadius(6)
                 }
-                .font(.subheadline)
-                .foregroundColor(.white)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 6)
-                .background(Color.accentColor)
-                .cornerRadius(6)
+                .buttonStyle(.plain)
+
+                // Open in GitHub button
+                Button(action: {
+                    openInGitHub()
+                }) {
+                    HStack {
+                        Image(systemName: "link")
+                        Text("Open in GitHub")
+                    }
+                    .font(.subheadline)
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(Color.secondary)
+                    .cornerRadius(6)
+                }
+                .buttonStyle(.plain)
             }
-            .buttonStyle(.plain)
             .padding(.top, 4)
         }
         .padding(.vertical, 8)
@@ -373,10 +393,20 @@ struct DetailRowView: View {
         let service = ClaudeIntegrationService()
         let prompt = service.generatePrompt(pr: pullRequest, widgetType: widgetType)
 
-        // Launch Terminal with Claude Code
+        // Launch Terminal with Claude Code in the repository directory
         let launcher = TerminalLauncher()
-        launcher.launchClaude(with: prompt)
+        launcher.launchClaude(with: prompt, repositoryName: pullRequest.repositoryFullName)
 
-        print("[Claude Button] Launched Claude Code for PR #\(pullRequest.number)")
+        print("[Claude Button] Launched Claude Code for PR #\(pullRequest.number) in repo \(pullRequest.repositoryFullName)")
+    }
+
+    private func openInGitHub() {
+        // Open the PR URL in the default browser
+        if let url = URL(string: pullRequest.url) {
+            NSWorkspace.shared.open(url)
+            print("[GitHub Button] Opened PR #\(pullRequest.number) in browser: \(pullRequest.url)")
+        } else {
+            print("[GitHub Button] Invalid URL for PR #\(pullRequest.number): \(pullRequest.url)")
+        }
     }
 }

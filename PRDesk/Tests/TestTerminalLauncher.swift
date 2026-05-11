@@ -82,11 +82,11 @@ struct TestTerminalLauncherView: View {
 
         // Test: Launch Terminal (should succeed or provide error message)
         let launcher = TerminalLauncher()
-        launcher.launchClaude(with: prompt)
+        launcher.launchClaude(with: prompt, repositoryName: samplePR.repositoryFullName)
 
         testResults.append("✅ TerminalLauncher.launchClaude() called")
         testResults.append("✅ Check Terminal.app for Claude Code launch")
-        testResults.append("✅ Expected command: claude <prompt>")
+        testResults.append("✅ Expected: cd to repo directory, then claude <prompt>")
     }
 
     private func testLaunchReviewRequested() {
@@ -102,11 +102,11 @@ struct TestTerminalLauncherView: View {
 
         // Test: Launch Terminal (should succeed or provide error message)
         let launcher = TerminalLauncher()
-        launcher.launchClaude(with: prompt)
+        launcher.launchClaude(with: prompt, repositoryName: samplePR.repositoryFullName)
 
         testResults.append("✅ TerminalLauncher.launchClaude() called")
         testResults.append("✅ Check Terminal.app for Claude Code launch")
-        testResults.append("✅ Expected command: claude <prompt>")
+        testResults.append("✅ Expected: cd to repo directory, then claude <prompt>")
     }
 }
 

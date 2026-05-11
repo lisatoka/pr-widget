@@ -11,8 +11,10 @@ import AppKit
 /// Service that launches Terminal.app and executes Claude Code with a prompt
 class TerminalLauncher {
     /// Launches Terminal.app and executes Claude Code with the provided prompt
-    /// - Parameter prompt: The prompt to pass to Claude Code
-    func launchClaude(with prompt: String) {
+    /// - Parameters:
+    ///   - prompt: The prompt to pass to Claude Code
+    ///   - repositoryName: The full repository name (e.g., "owner/repo") to find and cd into
+    func launchClaude(with prompt: String, repositoryName: String? = nil) {
         // Create a temporary shell script that will run claude with the prompt
         let tempDir = FileManager.default.temporaryDirectory
         let scriptPath = tempDir.appendingPathComponent("launch_claude_\(UUID().uuidString).sh")
@@ -20,10 +22,21 @@ class TerminalLauncher {
         // Escape the prompt for shell script
         let escapedPrompt = prompt.replacingOccurrences(of: "'", with: "'\\''")
 
+        // Try to find the repository directory
+        var cdCommand = ""
+        if let repoName = repositoryName {
+            if let repoPath = findRepositoryPath(repositoryName: repoName) {
+                print("[TerminalLauncher] Found repository at: \(repoPath)")
+                cdCommand = "cd '\(repoPath)' && "
+            } else {
+                print("[TerminalLauncher] Could not find repository: \(repoName)")
+            }
+        }
+
         // Create shell script content
         let scriptContent = """
         #!/bin/bash
-        claude '\(escapedPrompt)'
+        \(cdCommand)claude '\(escapedPrompt)'
         """
 
         do {
@@ -51,6 +64,66 @@ class TerminalLauncher {
     }
 
     // MARK: - Private Helpers
+
+    /// Finds the local path to a repository
+    /// - Parameter repositoryName: The full repository name (e.g., "owner/repo")
+    /// - Returns: The absolute path to the repository if found, nil otherwise
+    private func findRepositoryPath(repositoryName: String) -> String? {
+        // Extract just the repo name (e.g., "canva" from "canva/canva")
+        let repoShortName = repositoryName.split(separator: "/").last.map(String.init) ?? repositoryName
+
+        // Common base directories where repos might be cloned
+        let homeDir = FileManager.default.homeDirectoryForCurrentUser.path
+        let searchPaths = [
+            "\(homeDir)/code",
+            "\(homeDir)/Code",
+            "\(homeDir)/repos",
+            "\(homeDir)/git",
+            "\(homeDir)/src",
+            "\(homeDir)/work",
+            "\(homeDir)/Work",
+            "\(homeDir)/Projects",
+            "\(homeDir)/projects",
+            "\(homeDir)/dev",
+            "\(homeDir)/Development",
+            homeDir  // Also check home directory directly
+        ]
+
+        // For each search path, look for the repository
+        for basePath in searchPaths {
+            // Try the short name (e.g., ~/code/canva)
+            let shortPath = "\(basePath)/\(repoShortName)"
+            if isGitRepository(at: shortPath) {
+                return shortPath
+            }
+
+            // Try the full name (e.g., ~/code/canva/canva or ~/code/owner/repo)
+            let fullPath = "\(basePath)/\(repositoryName)"
+            if isGitRepository(at: fullPath) {
+                return fullPath
+            }
+        }
+
+        return nil
+    }
+
+    /// Checks if a directory is a git repository
+    /// - Parameter path: The directory path to check
+    /// - Returns: true if the directory exists and contains a .git folder
+    private func isGitRepository(at path: String) -> Bool {
+        let fileManager = FileManager.default
+        var isDirectory: ObjCBool = false
+
+        // Check if path exists and is a directory
+        guard fileManager.fileExists(atPath: path, isDirectory: &isDirectory),
+              isDirectory.boolValue else {
+            return false
+        }
+
+        // Check if .git exists
+        let gitPath = "\(path)/.git"
+        return fileManager.fileExists(atPath: gitPath)
+    }
 
     /// Escapes a string for safe use in shell commands
     private func escapeForShell(_ string: String) -> String {

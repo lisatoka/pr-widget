@@ -1,11 +1,11 @@
 # Session Handoff
 
-_Generated: 2026-05-08 23:28:15 UTC_
+_Generated: 2026-05-08 23:45:59 UTC_
 
 ## Git Context
 
 - **Branch:** `master`
-- **HEAD:** cb5aae1: chore: auto-commit before merge (loop primary)
+- **HEAD:** d86bf6b: chore: auto-commit before merge (loop primary)
 
 ## Tasks
 
@@ -42,22 +42,23 @@ _Generated: 2026-05-08 23:28:15 UTC_
 
 ### Remaining
 
+- [ ] Add "Open in GitHub" button to DetailRowView in DetailWindow.swift - add button next to "Open in Claude" button that opens the PR URL in the default browser using NSWorkspace.shared.open()
 - [~] Verify app builds and launches - run xcodebuild to confirm clean build, test launch shows window with placeholder text
 
 ## Key Files
 
 Recently modified:
 
-- `.DS_Store`
-- `.agents/scratchpad/implementation/pr-desk/logs/build-claude-button-green.log`
-- `.agents/scratchpad/implementation/pr-desk/logs/build-claude-button-red.log`
-- `.agents/scratchpad/implementation/pr-desk/logs/build-claude-prompt-green.log`
-- `.agents/scratchpad/implementation/pr-desk/logs/build-claude-prompt-red.log`
-- `.agents/scratchpad/implementation/pr-desk/logs/build-contentview.log`
-- `.agents/scratchpad/implementation/pr-desk/logs/build-detail-rows.log`
-- `.agents/scratchpad/implementation/pr-desk/logs/build-detail-window-notification-fix.log`
-- `.agents/scratchpad/implementation/pr-desk/logs/build-detail-window.log`
-- `.agents/scratchpad/implementation/pr-desk/logs/build-edge-cases-final.log`
+- `.agents/scratchpad/implementation/pr-desk/plan.md`
+- `.agents/scratchpad/implementation/pr-desk/progress.md`
+- `.ralph/agent/handoff.md`
+- `.ralph/agent/scratchpad.md`
+- `.ralph/agent/summary.md`
+- `.ralph/agent/tasks.jsonl`
+- `.ralph/current-events`
+- `.ralph/current-loop-id`
+- `.ralph/diagnostics/logs/ralph-2026-05-08T15-13-57-708-79632.log`
+- `.ralph/diagnostics/logs/ralph-2026-05-08T15-46-31-652-13507.log`
 
 ## Next Session
 

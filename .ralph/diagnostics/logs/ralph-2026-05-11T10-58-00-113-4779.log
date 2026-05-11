@@ -1,0 +1,32 @@
+[2m2026-05-11T00:58:00.383148Z[0m [33m WARN[0m [2mralph::loop_runner[0m[2m:[0m Interactive mode requested but stdout is not a TTY, falling back to autonomous
+[2m2026-05-11T00:58:00.386000Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Memory injection check: enabled=true, inject=Auto, workspace_root="/Users/lisatok/not_work/git_widget"
+[2m2026-05-11T00:58:00.386024Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Looking for memories at: "/Users/lisatok/not_work/git_widget/.ralph/agent/memories.md" (exists: true)
+[2m2026-05-11T00:58:00.387138Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Successfully loaded 3 memories from store
+[2m2026-05-11T00:58:00.387155Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Injecting 3 memories (994 chars) into prompt
+[2m2026-05-11T00:58:42.516363Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Memory injection check: enabled=true, inject=Auto, workspace_root="/Users/lisatok/not_work/git_widget"
+[2m2026-05-11T00:58:42.516395Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Looking for memories at: "/Users/lisatok/not_work/git_widget/.ralph/agent/memories.md" (exists: true)
+[2m2026-05-11T00:58:42.516591Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Successfully loaded 3 memories from store
+[2m2026-05-11T00:58:42.516610Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Injecting 3 memories (994 chars) into prompt
+[2m2026-05-11T00:58:42.516682Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Injecting scratchpad (606 chars) into prompt
+[2m2026-05-11T00:58:42.516970Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Injecting ready tasks (1 ready, 1 open, 0 closed) into prompt
+[2m2026-05-11T00:59:36.365170Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Memory injection check: enabled=true, inject=Auto, workspace_root="/Users/lisatok/not_work/git_widget"
+[2m2026-05-11T00:59:36.365209Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Looking for memories at: "/Users/lisatok/not_work/git_widget/.ralph/agent/memories.md" (exists: true)
+[2m2026-05-11T00:59:36.365327Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Successfully loaded 3 memories from store
+[2m2026-05-11T00:59:36.365342Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Injecting 3 memories (994 chars) into prompt
+[2m2026-05-11T00:59:36.365379Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Injecting scratchpad (606 chars) into prompt
+[2m2026-05-11T00:59:36.365507Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Injecting ready tasks (0 ready, 0 open, 1 closed) into prompt
+[2m2026-05-11T01:02:09.710612Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Memory injection check: enabled=true, inject=Auto, workspace_root="/Users/lisatok/not_work/git_widget"
+[2m2026-05-11T01:02:09.710640Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Looking for memories at: "/Users/lisatok/not_work/git_widget/.ralph/agent/memories.md" (exists: true)
+[2m2026-05-11T01:02:09.710758Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Successfully loaded 3 memories from store
+[2m2026-05-11T01:02:09.710770Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Injecting 3 memories (994 chars) into prompt
+[2m2026-05-11T01:02:09.710825Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Injecting scratchpad (2141 chars) into prompt
+[2m2026-05-11T01:02:09.710991Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Injecting ready tasks (0 ready, 0 open, 1 closed) into prompt
+[2m2026-05-11T01:03:06.155543Z[0m [32m INFO[0m [2mralph::rpc_stdin[0m[2m:[0m Stdin closed (EOF), stopping reader task
+[2m2026-05-11T01:03:06.208435Z[0m [33m WARN[0m [2mralph_adapters::json_rpc_handler[0m[2m:[0m Failed to write JSON-RPC event [3merror[0m[2m=[0mBroken pipe (os error 32)
+[2m2026-05-11T01:03:18.136879Z[0m [33m WARN[0m [2mralph::rpc_stdin[0m[2m:[0m Failed to write to stdout, stopping emitter
+[2m2026-05-11T01:03:18.137006Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Completion event detected in JSONL [3mtopic[0m[2m=[0mLOOP_COMPLETE
+[2m2026-05-11T01:03:18.137193Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Completion event detected - terminating
+[2m2026-05-11T01:03:18.137200Z[0m [32m INFO[0m [2mralph::loop_runner[0m[2m:[0m Completion event LOOP_COMPLETE detected.
+[2m2026-05-11T01:03:18.137213Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Wrapping up: completed. 4 iterations in 5m 17s. [3mreason[0m[2m=[0mcompleted [3miterations[0m[2m=[0m4 [3mduration[0m[2m=[0m5m 17s
+[2m2026-05-11T01:03:18.146659Z[0m [32m INFO[0m [2mralph_core::landing[0m[2m:[0m Beginning landing sequence [3mloop_id[0m[2m=[0mprimary
+[2m2026-05-11T01:03:18.146791Z[0m [33m WARN[0m [2mralph_core::landing[0m[2m:[0m Landing with 1 open tasks [3mloop_id[0m[2m=[0mprimary [3mopen_tasks[0m[2m=[0m["task-1778211554-aa6a"]
