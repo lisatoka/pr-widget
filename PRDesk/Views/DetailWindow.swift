@@ -145,18 +145,30 @@ struct DetailPRListView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            // Header with last update time
-            if let lastUpdate = viewModel.lastUpdateTime {
-                HStack {
+            // Header with last update time and Preferences button
+            HStack {
+                if let lastUpdate = viewModel.lastUpdateTime {
                     Text("Last updated \(timeAgoString(from: lastUpdate))")
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    Spacer()
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                Divider()
+                Spacer()
+                // Preferences button for accessing settings
+                Button(action: {
+                    openPreferences()
+                }) {
+                    HStack(spacing: 4) {
+                        Image(systemName: "gearshape")
+                        Text("Preferences")
+                    }
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                }
+                .buttonStyle(.plain)
             }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
+            Divider()
 
             if let errorMessage = viewModel.errorMessage {
                 errorView(message: errorMessage)
@@ -230,6 +242,11 @@ struct DetailPRListView: View {
         case .reviewRequested:
             return .reviewRequested
         }
+    }
+
+    private func openPreferences() {
+        // Call the AppDelegate's showPreferences method
+        NSApp.sendAction(#selector(AppDelegate.showPreferences(_:)), to: nil, from: nil)
     }
 }
 

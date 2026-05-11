@@ -23,6 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var myPRsPanel: FloatingPanelController<ContentView>?
     private var reviewRequestedPanel: FloatingPanelController<ContentView>?
     private var detailWindow: DetailWindowController?
+    private var preferencesWindow: PreferencesWindowController?
     private let refreshService = PRRefreshService()
     private var refreshTimer: Timer?
     private let basePollingInterval: TimeInterval = 300  // 5 minutes in seconds
@@ -35,7 +36,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         try? initLog.write(toFile: "/var/tmp/prdesk-app-debug.log", atomically: true, encoding: .utf8)
     }
 
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        // Override the Settings menu before SwiftUI creates it
+        setupSettingsMenuOverride()
+    }
+
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // Also try after launching, in case menu was created late
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.setupSettingsMenuOverride()
+        }
+
         // File logging for diagnostics
         let logMsg = "[PRDeskApp] applicationDidFinishLaunching started\n"
         try? logMsg.write(toFile: "/var/tmp/prdesk-app-debug.log", atomically: true, encoding: .utf8)
@@ -122,6 +133,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         detailWindow?.close()  // Explicitly close existing window
         detailWindow = DetailWindowController(initialTab: tab)
         detailWindow?.showWindow(nil)
+    }
+
+    /// Show the preferences window
+    @objc func showPreferences(_ sender: Any?) {
+        if preferencesWindow == nil {
+            preferencesWindow = PreferencesWindowController()
+        }
+        preferencesWindow?.showWindow(nil)
+        preferencesWindow?.window?.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
+    }
+
+    /// Override the Settings menu to call our custom preferences
+    private func setupSettingsMenuOverride() {
+        // Find the automatically created Settings menu item and update its action
+        if let appMenu = NSApp.mainMenu?.items.first?.submenu {
+            for item in appMenu.items {
+                if item.title.contains("Settings") || item.title.contains("Preferences") {
+                    item.target = self
+                    item.action = #selector(showPreferences(_:))
+                    print("[AppDelegate] Overrode Settings menu item: \(item.title)")
+                }
+            }
+        }
     }
 
     deinit {

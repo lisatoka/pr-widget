@@ -72,3 +72,10 @@ Expected subtasks:
 - Filter out closed and merged PRs: add --state=open flag to gh search commands
 - Sort PRs by most recent activity: add --sort=updated flag to gh search commands
 - Fix detail window opening too small: increase NSRect from 800x600 to larger size (1000x800)
+
+## Step 10 - Advanced Configuration Features
+**Demo:** Users can customize Claude prompts via JSON config and toggle "Launch at Login" from app UI
+
+Expected subtasks:
+- Implement customizable Claude prompts via JSON config file with template variable support
+- Add "Launch at Login" toggle in app UI using ServiceManagement framework

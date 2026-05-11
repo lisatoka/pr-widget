@@ -18,6 +18,7 @@
 		A10000031A000001 /* DetailWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000032A000001 /* DetailWindow.swift */; };
 		A10000033A000001 /* ClaudeIntegrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000034A000001 /* ClaudeIntegrationService.swift */; };
 		A10000035A000001 /* TerminalLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000036A000001 /* TerminalLauncher.swift */; };
+		A10000037A000001 /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000038A000001 /* PreferencesWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		A10000032A000001 /* DetailWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/DetailWindow.swift; sourceTree = "<group>"; };
 		A10000034A000001 /* ClaudeIntegrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/ClaudeIntegrationService.swift; sourceTree = "<group>"; };
 		A10000036A000001 /* TerminalLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/TerminalLauncher.swift; sourceTree = "<group>"; };
+		A10000038A000001 /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/PreferencesWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				A10000002A000001 /* ContentView.swift */,
 				A10000022A000001 /* FloatingPanelController.swift */,
 				A10000032A000001 /* DetailWindow.swift */,
+				A10000038A000001 /* PreferencesWindow.swift */,
 				A10000024A000001 /* PullRequest.swift */,
 				A10000026A000001 /* GitHubClient.swift */,
 				A10000028A000001 /* PRDataStore.swift */,
@@ -157,6 +160,7 @@
 				A10000001A000001 /* PRDeskApp.swift in Sources */,
 				A10000021A000001 /* FloatingPanelController.swift in Sources */,
 				A10000031A000001 /* DetailWindow.swift in Sources */,
+				A10000037A000001 /* PreferencesWindow.swift in Sources */,
 				A10000023A000001 /* PullRequest.swift in Sources */,
 				A10000025A000001 /* GitHubClient.swift in Sources */,
 				A10000027A000001 /* PRDataStore.swift in Sources */,

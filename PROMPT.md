@@ -161,3 +161,66 @@ Implementation:
 - In `DetailWindow.swift`, update the `NSWindow` contentRect initialization
 - Change from `NSRect(x: 0, y: 0, width: 800, height: 600)` to `NSRect(x: 0, y: 0, width: 1000, height: 800)` or similar
 - Consider making it slightly larger since it contains detailed PR information
+
+### 4. Make Claude Prompts Customizable via JSON Config
+Currently the Claude prompts are hardcoded in `ClaudeIntegrationService.swift`. Users who install via Homebrew cannot modify prompts without rebuilding the entire app.
+
+Required behavior:
+- Store default prompts in a JSON config file
+- Allow users to override prompts by editing the config file
+- Support template variables like `{pr_title}`, `{pr_url}`, `{pr_body}`, `{repo_name}`, etc.
+- If config file doesn't exist or is invalid, fall back to sensible defaults
+
+Implementation:
+- Create a config file at `~/Library/Application Support/PRDesk/prompts.json`
+- Default structure:
+  ```json
+  {
+    "myPRs": "I'm working on PR #{pr_number} in {repo_name}...",
+    "reviewRequested": "I need to review PR #{pr_number} in {repo_name}..."
+  }
+  ```
+- Update `ClaudeIntegrationService.swift` to:
+  - Load config on initialization
+  - Parse template variables and replace with actual PR data
+  - Fall back to hardcoded defaults if config is missing/invalid
+- Create the config file with sensible defaults on first launch if it doesn't exist
+
+Benefits:
+- Homebrew users can customize prompts without rebuilding
+- Users can share and iterate on prompt templates
+- Power users can tailor prompts to their workflow
+
+### 5. Add "Launch at Login" Toggle in App UI
+Currently users must manually configure Launch at Login through System Settings after installing via Homebrew.
+
+Required behavior:
+- Add a "Launch at Login" checkbox/toggle in the app UI
+- When enabled, app automatically starts when user logs in to macOS
+- State should persist across app restarts
+
+Implementation:
+- Add a Preferences/Settings menu item or window
+- Use `ServiceManagement` framework's `SMAppService` API (macOS 13+)
+- Add a toggle UI element that:
+  - Shows current launch-at-login status
+  - Allows user to enable/disable
+  - Persists setting in UserDefaults
+- Alternative for older macOS versions: Use `LSSharedFileList` API
+
+Example code pattern:
+```swift
+import ServiceManagement
+
+let service = SMAppService.mainApp
+if service.status == .enabled {
+    // Already enabled
+} else {
+    try? service.register()
+}
+```
+
+Benefits:
+- Seamless onboarding for Homebrew users
+- Widgets are "always there" as intended in product vision
+- No need to explain System Settings configuration

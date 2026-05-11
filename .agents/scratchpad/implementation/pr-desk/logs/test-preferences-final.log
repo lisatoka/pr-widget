@@ -1,0 +1,35 @@
+=== Critic Final Test: Launch at Login Toggle ===
+Started at: Mon 11 May 2026 12:45:10 AEST
+
+1. Killing existing PRDesk instances...
+2. Resetting UserDefaults...
+3. Launching PRDesk...
+   Found app at: /Users/lisatok/Library/Developer/Xcode/DerivedData/PRDesk-fptvlfwfiktswacazudejylhvrsk/Build/Products/Debug/PRDesk.app
+4. Verifying app is running...
+   ✓ App is running
+
+=== TEST 1: Access Preferences via Settings Menu ===
+Menu items: About This MacSystem Informationmissing valueSystem Settings…, 1 updateApp Storemissing valueRecent Itemsmissing valueForce Quit…Force Quit PRDeskmissing valueSleepRestart…RestartShut Down…Shut Downmissing valueLock ScreenLog Out Lisa Tokareva…Log Out Lisa Tokarevamissing value
+Found menu item: System Settings…, 1 update
+Windows after menu click: 
+FAIL: Settings menu clicked but no Preferences window found
+Test 1 exit code: 0
+
+=== TEST 2: Verify Toggle Exists and Works ===
+FAIL: Preferences window not found
+Test 2 exit code: 0
+
+=== TEST 3: Verify UserDefaults Persistence ===
+UserDefaults value: NOT_SET
+FAIL: UserDefaults not set after toggling
+
+=== TEST 4: Access Preferences via DetailWindow Button ===
+FAIL: No widget window found to click
+FAIL: DetailWindow not found
+Test 4 exit code: 0
+
+=== CLEANUP ===
+Test completed at: Mon 11 May 2026 12:45:22 AEST
+
+=== SUMMARY ===
+Check the log above for PASS/FAIL results for each test.
