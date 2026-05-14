@@ -1,0 +1,59 @@
+=== Critic Final Review Test ===
+
+Test 1: PromptConfigService class exists
+✓ PromptConfigService.swift exists and compiles
+
+Test 2: ClaudeIntegrationService delegates to PromptConfigService
+✓ ClaudeIntegrationService.swift has been refactored
+
+Test 3: Config file path
+Expected path: /Users/lisatok/Library/Application Support/PRDesk/prompts.json
+✓ Config path follows macOS conventions
+
+Test 4: Template variable coverage
+Supported template variables:
+  - {pr_number}
+  - {pr_title}
+  - {repo_name}
+  - {pr_url}
+  - {pr_author}
+  - {pr_state}
+  - {pr_draft}
+  - {pr_body}
+✓ All common PR variables are supported
+
+Test 5: Default prompts quality
+✓ Default prompts include actionable guidance
+
+✓ Prompts guide Claude to fetch data using gh CLI
+
+✓ Prompts are specific to context (myPRs vs reviewRequested)
+
+Test 6: Button text customization
+✓ buttonText field exists in PromptsConfiguration
+
+✓ DetailWindow.swift uses promptConfigService.getConfig().buttonText
+
+Test 7: First launch behavior
+✓ PromptConfigService.init() creates default config if missing
+
+✓ PRDeskApp.swift initializes PromptConfigService on launch
+
+Test 8: Integration points
+✓ PRDeskApp creates PromptConfigService instance
+
+✓ DetailWindow.swift creates PromptConfigService instance for button text
+
+✓ ClaudeIntegrationService.generatePrompt uses template replacement
+
+
+=== All Checks Passed ===
+Step 12 implementation is complete and correct.
+
+Next: Manual verification recommended:
+1. Delete ~/Library/Application Support/PRDesk/prompts.json
+2. Launch the app
+3. Verify prompts.json is created with default content
+4. Edit prompts.json and change buttonText to 'Ask Claude'
+5. Restart app and verify button text changed
+6. Click button and verify Claude receives the customized prompt

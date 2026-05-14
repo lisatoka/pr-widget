@@ -19,6 +19,7 @@
 		A10000033A000001 /* ClaudeIntegrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000034A000001 /* ClaudeIntegrationService.swift */; };
 		A10000035A000001 /* TerminalLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000036A000001 /* TerminalLauncher.swift */; };
 		A10000037A000001 /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000038A000001 /* PreferencesWindow.swift */; };
+		A10000039A000001 /* PromptConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000040A000001 /* PromptConfigService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		A10000034A000001 /* ClaudeIntegrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/ClaudeIntegrationService.swift; sourceTree = "<group>"; };
 		A10000036A000001 /* TerminalLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/TerminalLauncher.swift; sourceTree = "<group>"; };
 		A10000038A000001 /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/PreferencesWindow.swift; sourceTree = "<group>"; };
+		A10000040A000001 /* PromptConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/PromptConfigService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				A10000030A000001 /* PRRefreshService.swift */,
 				A10000034A000001 /* ClaudeIntegrationService.swift */,
 				A10000036A000001 /* TerminalLauncher.swift */,
+				A10000040A000001 /* PromptConfigService.swift */,
 				A10000004A000001 /* Assets.xcassets */,
 				A10000006A000001 /* Info.plist */,
 				A10000007A000001 /* PRDesk.entitlements */,
@@ -167,6 +170,7 @@
 				A10000029A000001 /* PRRefreshService.swift in Sources */,
 				A10000033A000001 /* ClaudeIntegrationService.swift in Sources */,
 				A10000035A000001 /* TerminalLauncher.swift in Sources */,
+				A10000039A000001 /* PromptConfigService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,21 @@
+🧪 Running adversarial test harness for PromptConfigService...
+
+[Test 1] Verify {pr_body} is replaced, not left as literal
+✓ {pr_body} is replaced (not left as literal)
+
+[Test 2] Special characters in PR title
+✓ Special characters preserved correctly
+
+[Test 3] Draft PR indicator
+✓ Draft indicator works
+
+[Test 4] Config persistence across service instances
+✓ Config persists across service instances
+
+[Test 5] All required template variables
+✓ All template variables supported
+
+[Test 6] Edge case - empty template
+✓ Empty template handled
+
+✅ All adversarial tests passed!

@@ -1,0 +1,23 @@
+Creating ClaudeIntegrationService...
+Generating myPRs prompt...
+
+=== My PRs Prompt ===
+Custom myPRs template with 42
+
+=== Checks ===
+✓ Contains PR number (42)
+✗ Missing PR title 'Add feature XYZ'
+✗ Missing repo name 'test/repo'
+✗ Missing PR URL
+✓ No unreplaced template variables
+
+Generating reviewRequested prompt...
+
+=== Review Requested Prompt ===
+Custom review template with Add feature XYZ
+
+=== Checks ===
+✗ Missing PR number
+✗ Missing author username
+
+❌ Some tests failed

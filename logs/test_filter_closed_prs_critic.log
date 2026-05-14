@@ -1,0 +1,6 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test -project PRDesk.xcodeproj -scheme PRDesk "-only-testing:PRDeskTests/TestFilterClosedPRs"
+
+2026-05-14 13:17:55.352 xcodebuild[50571:730856] Writing error result bundle to /var/folders/zb/gvmwswy11_g4tz9rmt4jl6qm0000gn/T/ResultBundle_2026-14-05_13-17-0055.xcresult
+xcodebuild: error: Scheme PRDesk is not currently configured for the test action.
+

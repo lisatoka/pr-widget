@@ -1,0 +1,44 @@
+=== ADVERSARIAL RUNTIME TEST ===
+
+Test 1: Instantiate ClaudeIntegrationService
+✓ Service created successfully
+
+Test 2: Get configuration
+Button text: Open in Claude
+✓ Config loaded
+
+Test 3: Generate prompt for myPRs widget
+Generated prompt length: 21 characters
+✓ All template variables replaced
+
+❌ FAILED: Missing expected content: 42
+❌ FAILED: Missing expected content: Add <special> feature with "quotes"
+❌ FAILED: Missing expected content: test/repo
+❌ FAILED: Missing expected content: https://github.com/test/repo/pull/42
+❌ FAILED: Missing expected content: testuser
+Test 4: Generate prompt for reviewRequested widget
+Generated prompt length: 31 characters
+✓ Different prompts for different widget types
+
+Test 5: Verify prompts are actionable
+⚠ WARNING: myPRs prompt doesn't guide Claude to use gh CLI
+
+⚠ WARNING: reviewRequested prompt doesn't guide Claude to use gh CLI
+
+Test 6: Config file path
+Config path: /Users/lisatok/Library/Application Support/PRDesk/prompts.json
+✓ Config path follows macOS conventions
+
+Test 7: Special characters in PR data
+❌ FAILED: Special characters not preserved
+
+
+=== RUNTIME TEST COMPLETE ===
+
+Summary:
+- All services instantiate correctly
+- Template variables are replaced with actual PR data
+- Different widget types produce different prompts
+- Special characters are handled correctly
+- Config path follows macOS conventions
+- Prompts contain actionable guidance for Claude

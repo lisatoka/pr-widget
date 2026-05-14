@@ -1,0 +1,6 @@
+Testing PromptConfigService...
+✓ Default config loaded
+✓ Template variable parsing works
+✓ Config path is correct
+✓ {pr_body} template variable replaced with placeholder
+✅ All PromptConfigService tests passed

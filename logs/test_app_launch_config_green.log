@@ -1,0 +1,17 @@
+Test: prompts.json creation on first app launch
+Test config path: /var/folders/zb/gvmwswy11_g4tz9rmt4jl6qm0000gn/T/PRDesk-launch-test-9CB276D8-90D7-4CB9-AFD4-DA19AFDE11E0/prompts.json
+✓ Config doesn't exist before first launch
+✓ Created Application Support directory
+✓ Created default prompts.json file
+✓ Config file exists at expected path
+✓ buttonText: 'Open in Claude'
+✓ myPRs prompt contains expected content (442 chars)
+✓ reviewRequested prompt contains expected content (529 chars)
+✓ JSON is pretty-printed
+
+--- Testing second launch (config already exists) ---
+✓ Modified config to simulate user customization
+✓ Custom config persists (not overwritten)
+✓ Cleanup complete
+
+✅ All tests passed - default config created on first launch, user customizations preserved

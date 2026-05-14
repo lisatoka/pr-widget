@@ -1,0 +1,7 @@
+Testing PromptConfigService...
+[PromptConfigService] Failed to load config: DecodingError.keyNotFound: Key 'buttonText' not found in keyed decoding container. Debug description: No value associated with key CodingKeys(stringValue: "buttonText", intValue: nil) ("buttonText").
+[PromptConfigService] Created default config at: /Users/lisatok/Library/Application Support/PRDesk/prompts.json
+✓ Default config loaded
+✓ Template variable parsing works
+✓ Config path is correct
+✅ All PromptConfigService tests passed

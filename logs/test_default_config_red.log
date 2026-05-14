@@ -1,0 +1,11 @@
+Test: Default prompts.json creation on first launch
+✓ Config file doesn't exist initially
+✓ Created default config file
+✓ Config file exists after creation
+✓ Config file contains valid data
+  buttonText: Open in Claude
+  myPRs length: 20 chars
+  reviewRequested length: 30 chars
+✓ Cleanup complete
+
+✅ All tests passed

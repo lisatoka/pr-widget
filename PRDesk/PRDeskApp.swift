@@ -25,6 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var detailWindow: DetailWindowController?
     private var preferencesWindow: PreferencesWindowController?
     private let refreshService = PRRefreshService()
+    private let promptConfigService = PromptConfigService()  // Initialize early to create default config
     private var refreshTimer: Timer?
     private let basePollingInterval: TimeInterval = 300  // 5 minutes in seconds
     private var currentPollingInterval: TimeInterval = 300  // Current interval (may increase with backoff)
