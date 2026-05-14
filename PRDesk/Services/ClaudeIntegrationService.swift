@@ -15,7 +15,7 @@ struct PromptsConfig: Codable {
 
 /// Service that handles Claude Code integration
 class ClaudeIntegrationService {
-    private let config: PromptsConfig
+    private var config: PromptsConfig
     private let configPath: URL
 
     /// Initialize the service and load config from Application Support
@@ -33,6 +33,32 @@ class ClaudeIntegrationService {
             config = Self.defaultConfig()
             Self.createDefaultConfig(at: configPath, config: config)
         }
+    }
+
+    /// Get the current prompts configuration
+    func getConfig() -> PromptsConfig {
+        return config
+    }
+
+    /// Save new prompts configuration
+    /// - Parameter newConfig: The new prompts configuration to save
+    /// - Throws: Error if save fails
+    func saveConfig(_ newConfig: PromptsConfig) throws {
+        // Update in-memory config
+        config = newConfig
+
+        // Save to disk
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        let data = try encoder.encode(newConfig)
+        try data.write(to: configPath)
+
+        print("[ClaudeIntegrationService] Saved prompts config to: \(configPath.path)")
+    }
+
+    /// Get the config file path (useful for UI to show user where file is located)
+    func getConfigPath() -> String {
+        return configPath.path
     }
 
     /// Generates an appropriate Claude Code prompt based on the PR and widget context

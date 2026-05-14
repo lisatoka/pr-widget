@@ -43,6 +43,7 @@ class FloatingPanel: NSPanel {
 class FloatingPanelController<Content: View>: NSObject {
     private var panel: FloatingPanel
     private var hostingController: NSHostingController<Content>
+    private var sizeObserver: NSKeyValueObservation?
 
     init(content: Content, frame: NSRect) {
         self.panel = FloatingPanel(
@@ -55,6 +56,35 @@ class FloatingPanelController<Content: View>: NSObject {
         super.init()
 
         panel.contentView = hostingController.view
+
+        // Observe size changes from SwiftUI content and resize panel accordingly
+        setupSizeObserver()
+    }
+
+    private func setupSizeObserver() {
+        // Observe intrinsic content size changes
+        sizeObserver = hostingController.view.observe(\.fittingSize, options: [.new]) { [weak self] view, change in
+            guard let self = self, let newSize = change.newValue else { return }
+
+            // Only resize if the size actually changed
+            let currentSize = self.panel.frame.size
+            if abs(currentSize.width - newSize.width) > 1 || abs(currentSize.height - newSize.height) > 1 {
+                self.resizePanel(to: newSize)
+            }
+        }
+    }
+
+    private func resizePanel(to newSize: NSSize) {
+        // Preserve the top-left corner position while resizing
+        let currentFrame = panel.frame
+        let newOriginY = currentFrame.origin.y + (currentFrame.size.height - newSize.height)
+        let newFrame = NSRect(
+            x: currentFrame.origin.x,
+            y: newOriginY,
+            width: newSize.width,
+            height: newSize.height
+        )
+        panel.setFrame(newFrame, display: true, animate: true)
     }
 
     func show() {
@@ -68,5 +98,9 @@ class FloatingPanelController<Content: View>: NSObject {
 
     var isVisible: Bool {
         return panel.isVisible
+    }
+
+    deinit {
+        sizeObserver?.invalidate()
     }
 }

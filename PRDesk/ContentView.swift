@@ -153,7 +153,32 @@ struct ContentView: View {
                 }
             }
         }
-        .frame(minWidth: 300, minHeight: 400)
+        .frame(width: 300, height: calculateHeight())
+    }
+
+    // MARK: - Dynamic Height Calculation
+
+    /// Calculate widget height based on number of PRs
+    /// Header: ~50px, Each PR row: ~70px, Empty/Loading/Error states: ~100px
+    private func calculateHeight() -> CGFloat {
+        let headerHeight: CGFloat = 50
+        let rowHeight: CGFloat = 70
+        let emptyStateHeight: CGFloat = 100
+        let maxHeight: CGFloat = 400
+        let minHeight: CGFloat = 150
+
+        let contentHeight: CGFloat
+        if viewModel.isLoading || viewModel.errorMessage != nil || viewModel.pullRequests.isEmpty {
+            // Loading, error, or empty state
+            contentHeight = emptyStateHeight
+        } else {
+            // Calculate based on number of PRs
+            let prCount = CGFloat(viewModel.pullRequests.count)
+            contentHeight = prCount * rowHeight + 16 // 16px for padding
+        }
+
+        let totalHeight = headerHeight + contentHeight
+        return min(max(totalHeight, minHeight), maxHeight)
     }
 
     // MARK: - Subviews

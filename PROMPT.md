@@ -32,6 +32,7 @@ Widgets should:
 - Be movable around the desktop by the user.
 - Remember their positions.
 - Use dark translucent macOS styling.
+- Show a total count of active PRs (PRs requiring attention) in the corner of each widget.
 - Show only compact information:
   - PR title
   - repo name
@@ -50,6 +51,20 @@ For **PRs I’m Tagged In**:
 - Highlight when I have been requested as reviewer and have not reviewed yet.
 - Highlight when there are new comments requiring my attention.
 - Dim items with no new activity.
+
+## Menu bar presence
+
+PR Desk should have a menu bar icon (similar to f.lux, Telegram, etc.) at the top of the screen rather than a dock icon at the bottom.
+
+The menu bar icon should:
+- Display the total number of PRs requiring attention across both categories (My PRs + PRs I'm Tagged In)
+- Be always visible in the macOS menu bar
+- Provide quick access to the app (clicking opens the full window or provides a menu)
+
+Implementation:
+- Use `NSStatusBar.system.statusItem` to create the menu bar icon
+- Set `NSApp.setActivationPolicy(.accessory)` to hide the dock icon
+- Update the status bar icon badge/text with the total PR count
 
 ## Full window
 
@@ -150,46 +165,54 @@ Implementation:
 - Update both fetch methods to include: `gh search prs --sort=updated --author=@me` and `gh search prs --sort=updated --review-requested=@me`
 - GitHub CLI returns results in descending order by default (newest first) when using `--sort=updated`
 
-### 3. Fix Detail Window Opening Too Small
-The detail window currently opens very small initially.
+### 3. Make Detail Window Size Dynamic
+The detail window should automatically size itself based on the available screen space.
 
 Required behavior:
-- Detail window should open at a reasonable default size (e.g., 900x700 or larger)
+- Window size should be dynamic based on screen dimensions
+- Current window size should be the maximum window size possible while maintaining comfortable margins
+- Should adapt to different screen sizes and resolutions
 - Should be comfortable to read PR details without resizing
 
 Implementation:
-- In `DetailWindow.swift`, update the `NSWindow` contentRect initialization
-- Change from `NSRect(x: 0, y: 0, width: 800, height: 600)` to `NSRect(x: 0, y: 0, width: 1000, height: 800)` or similar
-- Consider making it slightly larger since it contains detailed PR information
+- In `DetailWindow.swift`, calculate window size based on `NSScreen.main?.visibleFrame`
+- Use a percentage of the screen size (e.g., 80-90% of screen width/height) or leave appropriate margins
+- Account for menu bar and dock space
+- Example: `let screenFrame = NSScreen.main?.visibleFrame ?? .zero; let width = screenFrame.width * 0.85; let height = screenFrame.height * 0.85`
 
 ### 4. Make Claude Prompts Customizable via JSON Config
 Currently the Claude prompts are hardcoded in `ClaudeIntegrationService.swift`. Users who install via Homebrew cannot modify prompts without rebuilding the entire app.
 
 Required behavior:
-- Store default prompts in a JSON config file
-- Allow users to override prompts by editing the config file
+- Store default prompts in a JSON config file that users can edit
+- Allow users to customize both the prompts sent to Claude AND the button text
 - Support template variables like `{pr_title}`, `{pr_url}`, `{pr_body}`, `{repo_name}`, etc.
 - If config file doesn't exist or is invalid, fall back to sensible defaults
+- The "Open in Claude" button text and associated prompt should both be configurable
 
 Implementation:
 - Create a config file at `~/Library/Application Support/PRDesk/prompts.json`
 - Default structure:
   ```json
   {
-    "myPRs": "I'm working on PR #{pr_number} in {repo_name}...",
-    "reviewRequested": "I need to review PR #{pr_number} in {repo_name}..."
+    "buttonText": "Open in Claude",
+    "myPRs": "I'm working on PR #{pr_number} in {repo_name}: {pr_title}\n\nPR URL: {pr_url}\n\nPR Description:\n{pr_body}\n\nPlease help me address reviewer feedback and suggest code changes.",
+    "reviewRequested": "I need to review PR #{pr_number} in {repo_name}: {pr_title}\n\nPR URL: {pr_url}\n\nPR Description:\n{pr_body}\n\nPlease help me understand the changes and provide a thorough review."
   }
   ```
 - Update `ClaudeIntegrationService.swift` to:
   - Load config on initialization
   - Parse template variables and replace with actual PR data
   - Fall back to hardcoded defaults if config is missing/invalid
+- Update button text in UI (DetailWindow.swift) to use the configurable `buttonText` value
 - Create the config file with sensible defaults on first launch if it doesn't exist
+- Consider adding a "Reveal Config" button in preferences to help users find and edit the file
 
 Benefits:
 - Homebrew users can customize prompts without rebuilding
 - Users can share and iterate on prompt templates
 - Power users can tailor prompts to their workflow
+- Users can customize the button text (e.g., "Ask Claude", "Get AI Help", etc.)
 
 ### 5. Add "Launch at Login" Toggle in App UI
 Currently users must manually configure Launch at Login through System Settings after installing via Homebrew.
