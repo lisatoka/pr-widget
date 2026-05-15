@@ -1,0 +1,42 @@
+=== ADVERSARIAL TESTS FOR CLAUDEINTEGRATIONSERVICE ===
+
+Test 1: Verify prompts come from PromptConfigService config...
+✓ myPRs prompt is loaded
+✓ reviewRequested prompt is loaded
+✓ buttonText is loaded: 'Open in Claude'
+
+Test 2: Verify all template variables are replaced...
+✓ No unreplaced template variables found
+
+Test 3: Verify PR data appears in generated prompts...
+✓ myPRs prompt contains PR number 999
+✓ myPRs prompt contains PR title
+✓ myPRs prompt contains repo name
+✓ reviewRequested prompt contains PR number 999
+✓ reviewRequested prompt contains author username
+
+Test 4: Verify special characters are preserved...
+✓ Special characters preserved in myPRs prompt
+
+Test 5: Verify config path is accessible...
+✓ Config path is correct: /Users/lisatok/Library/Application Support/PRDesk/prompts.json
+
+Test 6: Verify widget types produce different prompts...
+✓ myPRs and reviewRequested prompts are different
+
+Test 7: Check for hardcoded prompt remnants...
+✓ myPRs prompt has reasonable length (141 chars)
+✓ reviewRequested prompt has reasonable length (98 chars)
+
+=== ACTUAL PROMPTS FOR MANUAL REVIEW ===
+
+--- myPRs prompt ---
+PR #999: Critical bug fix with "quotes" and <special> chars in org/testrepo
+URL: https://github.com/org/testrepo/pull/999
+Author: critic-user
+
+--- reviewRequested prompt ---
+Review PR #999: Critical bug fix with "quotes" and <special> chars by @critic-user in org/testrepo
+
+=== FINAL RESULT ===
+✅ All adversarial tests passed!

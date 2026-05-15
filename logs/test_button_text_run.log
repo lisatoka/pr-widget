@@ -1,0 +1,8 @@
+[TestDetailWindowButtonText] Starting test...
+[TestDetailWindowButtonText] Button text from config: 'Open in Claude'
+[PromptConfigService] Saved prompts config to: /Users/lisatok/Library/Application Support/PRDesk/prompts.json
+[TestDetailWindowButtonText] ✅ Button text is customizable and persists
+[PromptConfigService] Saved prompts config to: /Users/lisatok/Library/Application Support/PRDesk/prompts.json
+[TestDetailWindowButtonText] ✅ Button text can be changed multiple times
+[PromptConfigService] Saved prompts config to: /Users/lisatok/Library/Application Support/PRDesk/prompts.json
+[TestDetailWindowButtonText] ✅ All tests passed!

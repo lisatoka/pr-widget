@@ -11,9 +11,14 @@ import SwiftUI
 /// Main detail window showing full PR information with tabs
 class DetailWindowController: NSWindowController {
     convenience init(initialTab: DetailView.DetailTab = .myPRs) {
+        // Calculate dynamic window size based on screen dimensions
+        let screenFrame = NSScreen.main?.visibleFrame ?? NSRect(x: 0, y: 0, width: 1440, height: 900)
+        let width = screenFrame.width * 0.85
+        let height = screenFrame.height * 0.85
+
         // Create a standard macOS window (not NSPanel)
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 1000, height: 800),
+            contentRect: NSRect(x: 0, y: 0, width: width, height: height),
             styleMask: [.titled, .closable, .resizable, .miniaturizable],
             backing: .buffered,
             defer: false
@@ -254,6 +259,7 @@ struct DetailPRListView: View {
 struct DetailRowView: View {
     let pullRequest: PullRequest
     let widgetType: WidgetType
+    private let promptConfigService = PromptConfigService()
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -309,13 +315,13 @@ struct DetailRowView: View {
 
             // Action buttons
             HStack(spacing: 12) {
-                // Open in Claude button
+                // Open in Claude button (text is configurable via prompts.json)
                 Button(action: {
                     openInClaude()
                 }) {
                     HStack {
                         Image(systemName: "terminal")
-                        Text("Open in Claude")
+                        Text(promptConfigService.getConfig().buttonText)
                     }
                     .font(.subheadline)
                     .foregroundColor(.white)

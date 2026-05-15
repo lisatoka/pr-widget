@@ -1,0 +1,7 @@
+PRDesk/Tests/TestPromptConfigService.swift:31:19: error: cannot find 'PromptConfigService' in scope
+29 | 
+30 |     // Test 1: Service initializes with defaults
+31 |     let service = PromptConfigService()
+   |                   `- error: cannot find 'PromptConfigService' in scope
+32 |     let config = service.getConfig()
+33 | 

@@ -115,9 +115,16 @@ struct ContentView: View {
                 // Header
                 HStack {
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(widgetType.title)
-                            .font(.headline)
-                            .foregroundColor(.white)
+                        HStack(spacing: 4) {
+                            Text(widgetType.title)
+                                .font(.headline)
+                                .foregroundColor(.white)
+                            if !viewModel.pullRequests.isEmpty {
+                                Text("(\(viewModel.pullRequests.count))")
+                                    .font(.headline)
+                                    .foregroundColor(.white.opacity(0.6))
+                            }
+                        }
                         if let lastUpdate = viewModel.lastUpdateTime {
                             Text("Updated \(timeAgoString(from: lastUpdate))")
                                 .font(.caption2)
@@ -159,10 +166,12 @@ struct ContentView: View {
     // MARK: - Dynamic Height Calculation
 
     /// Calculate widget height based on number of PRs
-    /// Header: ~50px, Each PR row: ~70px, Empty/Loading/Error states: ~100px
+    /// Header: ~60px, Each PR row: ~70px, Row spacing: ~8px, Empty/Loading/Error states: ~100px
     private func calculateHeight() -> CGFloat {
-        let headerHeight: CGFloat = 50
+        let headerHeight: CGFloat = 60  // Increased for divider and padding
         let rowHeight: CGFloat = 70
+        let rowSpacing: CGFloat = 8
+        let scrollViewPadding: CGFloat = 16  // 8px top + 8px bottom
         let emptyStateHeight: CGFloat = 100
         let maxHeight: CGFloat = 400
         let minHeight: CGFloat = 150
@@ -172,9 +181,10 @@ struct ContentView: View {
             // Loading, error, or empty state
             contentHeight = emptyStateHeight
         } else {
-            // Calculate based on number of PRs
+            // Calculate based on number of PRs, accounting for spacing between rows
             let prCount = CGFloat(viewModel.pullRequests.count)
-            contentHeight = prCount * rowHeight + 16 // 16px for padding
+            let spacingHeight = max(0, (prCount - 1) * rowSpacing)  // n-1 gaps for n items
+            contentHeight = prCount * rowHeight + spacingHeight + scrollViewPadding
         }
 
         let totalHeight = headerHeight + contentHeight

@@ -1,0 +1,26 @@
+Creating ClaudeIntegrationService...
+Generating myPRs prompt...
+
+=== My PRs Prompt ===
+PR #42: Add feature XYZ in test/repo
+URL: https://github.com/test/repo/pull/42
+Author: testuser
+
+=== Checks ===
+✓ Contains PR number (42)
+✓ Contains PR title
+✓ Contains repo name
+✓ Contains PR URL
+✓ Contains author (in prompt or could be in My PRs context)
+✓ No unreplaced template variables
+
+Generating reviewRequested prompt...
+
+=== Review Requested Prompt ===
+Review PR #42: Add feature XYZ by @testuser in test/repo
+
+=== Checks ===
+✓ Contains PR number
+✓ Contains author username
+
+✅ All tests passed!
